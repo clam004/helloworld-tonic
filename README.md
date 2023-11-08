@@ -1,46 +1,37 @@
-
-
-[Step By Step Rust Tonic Tutorial](https://github.com/hyperium/tonic/blob/master/examples/helloworld-tutorial.md)
+# helloworld-tonic
 
 How to use Protocol Buffers (protobuf) as an interface (I/F) between Rust code (using tonic) and Python code (using grpc)
 
-## Directory structures
+[Step By Step Rust Tonic Tutorial](https://github.com/hyperium/tonic/blob/master/examples/helloworld-tutorial.md)
 
-```bash
-├── setup.py
-├── proto
-│   └── helloworld.proto
-├── rust_server
-│   ├── Cargo.toml
-│   ├── src
-│   │   ├── main.rs
-│   │   └── helloworld
-│   │       └── mod.rs
-└── python_client
-    └── client.py
-```
 
 ## Install Rust 
 
-1. You can install the nightly version of Rust using Rustup, which is a tool for managing Rust installations. 
-   If you don't have Rustup installed, you can get it from the official website: https://rustup.rs/. 
-   
-   ```bash
+```bash
    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-   ```
-   
-2. Once you have Rustup, you can install the nightly version with the following command:
+   source "$HOME/.cargo/env"
+   rustup update
+```
 
-   ```bash
-   rustup install nightly
-   ```
+## Rust server and client
 
-3. Switch to the nightly version of Rust for your project:
-   To use the nightly version of Rust for your project, navigate to your project directory and run the following command:
+Within the main directory, the same level as `Cargo.toml`, do the following:
 
-   ```bash
-   rustup override set nightly
-   ```
+To run the server, run `cargo run --bin helloworld-server`. 
+
+To run the client, run `cargo run --bin helloworld-client` in another terminal window.
+
+You should see the request logged out by the server in its terminal window, as well as the response logged out by the client in its window.
+
+
+
+
+
+
+
+
+
+
 
 ## Build
 
@@ -61,4 +52,21 @@ $ source venv/bin/activate
 
 ```bash
 $ python python_client/client.py
+```
+
+
+## Directory structures
+
+```bash
+├── setup.py
+├── proto
+│   └── helloworld.proto
+├── rust_server
+│   ├── Cargo.toml
+│   ├── src
+│   │   ├── main.rs
+│   │   └── helloworld
+│   │       └── mod.rs
+└── python_client
+    └── client.py
 ```
