@@ -4,6 +4,8 @@ How to use Protocol Buffers (protobuf) as an interface (I/F) between Rust code (
 
 [Step By Step Rust Tonic Tutorial](https://github.com/hyperium/tonic/blob/master/examples/helloworld-tutorial.md)
 
+In the example below we first have a Rust server and client exchange a message via gRPC, then we have python exchange a message via gRPC, then
+you can have a python-client exchange a message via gRPC with a rust-server, or have a rust-client exchange a message via gRPC with a python-server.
 
 ## Install Rust 
 
@@ -23,29 +25,36 @@ To run the client, run `cargo run --bin helloworld-client` in another terminal w
 
 You should see the request logged out by the server in its terminal window, as well as the response logged out by the client in its window.
 
-
-
-
-
-
-
-
-
-
-
-## Build
-
 ```bash
-$ python setup.py develop
+(venv) helloworld-tonic % cargo run --bin helloworld-server
+    Updating crates.io index
+  Downloaded percent-encoding v2.3.0
+  Downloaded fastrand v2.0.1
+  Downloaded futures-core v0.3.29
+  Downloaded futures-task v0.3.29
+  .
+  .
+  .
+   Compiling tonic v0.10.2
+    Finished dev [unoptimized + debuginfo] target(s) in 36.61s
+     Running `target/debug/helloworld-server`
+Got a request: Request { metadata: MetadataMap { headers: {"te": "trailers", "content-type": "application/grpc", "user-agent": "tonic/0.10.2"} }, message: HelloRequest { name: "Tonic" }, extensions: Extensions }
+Got a request: Request { metadata: MetadataMap { headers: {"content-type": "application/grpc", "te": "trailers", "grpc-accept-encoding": "identity, deflate, gzip", "user-agent": "grpc-python/1.59.2 grpc-c/36.0.0 (osx; chttp2)"} }, message: HelloRequest { name: "you" }, extensions: Extensions }
 ```
 
-### Optional
+[Step by Step Python gRPC tutorial](https://grpc.io/docs/languages/python/quickstart/)
+
+### Python server and client
 
 ```bash
 $ python3 -m venv venv
 $ source venv/bin/activate
-(venv) $ python setup.py --help-commands # complete list of available commands for your specific package, ie python setup.py build etc. 
-(venv) $ python setup.py develop # changes you make to the package's source code will immediately affect the installed package
+(venv) $ python -m pip install grpcio
+(venv) $ pip install protobuf
+(venv) $ cd pythonapi
+(venv) python $ python greeter_client.py
+Will try to greet world ...
+Greeter client received: Hello you!
 ```
 
 ## Testing
