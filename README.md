@@ -2,10 +2,12 @@
 
 How to use Protocol Buffers (protobuf) as an interface (I/F) between Rust code (using tonic) and Python code (using grpc)
 
-[Step By Step Rust Tonic Tutorial](https://github.com/hyperium/tonic/blob/master/examples/helloworld-tutorial.md)
-
 In the example below we first have a Rust server and client exchange a message via gRPC, then we have python exchange a message via gRPC, then
 you can have a python-client exchange a message via gRPC with a rust-server, or have a rust-client exchange a message via gRPC with a python-server.
+
+## Rust server and client
+
+[Step By Step Rust Tonic Tutorial](https://github.com/hyperium/tonic/blob/master/examples/helloworld-tutorial.md)
 
 ## Install Rust 
 
@@ -14,8 +16,6 @@ you can have a python-client exchange a message via gRPC with a rust-server, or 
    source "$HOME/.cargo/env"
    rustup update
 ```
-
-## Rust server and client
 
 Within the main directory, the same level as `Cargo.toml`, do the following:
 
@@ -42,11 +42,13 @@ Got a request: Request { metadata: MetadataMap { headers: {"te": "trailers", "co
 Got a request: Request { metadata: MetadataMap { headers: {"content-type": "application/grpc", "te": "trailers", "grpc-accept-encoding": "identity, deflate, gzip", "user-agent": "grpc-python/1.59.2 grpc-c/36.0.0 (osx; chttp2)"} }, message: HelloRequest { name: "you" }, extensions: Extensions }
 ```
 
-[Step by Step Python gRPC tutorial](https://grpc.io/docs/languages/python/quickstart/)
-
 ### Python server and client
 
+[Step by Step Python gRPC tutorial](https://grpc.io/docs/languages/python/quickstart/)
+
 ```bash
+$ python3 -m pip install --upgrade pip 
+$ python3 -m pip install virtualenv # if not already done
 $ python3 -m venv venv
 $ source venv/bin/activate
 (venv) $ python -m pip install grpcio
