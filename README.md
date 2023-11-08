@@ -59,10 +59,16 @@ Will try to greet world ...
 Greeter client received: Hello you!
 ```
 
-## Testing
+## Python as the server
 
 ```bash
-$ python python_client/client.py
+(venv) python $ python greeter_server.py
+```
+
+in another terminal
+
+```
+(venv) rust-grpc-python-tonic $ cargo run --bin helloworld-client
 ```
 
 
