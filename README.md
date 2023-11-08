@@ -1,4 +1,4 @@
-# helloworld-tonic
+# rust-grpc-python-tonic
 
 How to use Protocol Buffers (protobuf) as an interface (I/F) between Rust code (using tonic) and Python code (using grpc)
 
