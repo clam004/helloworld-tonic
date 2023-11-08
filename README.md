@@ -69,15 +69,16 @@ $ python python_client/client.py
 ## Directory structures
 
 ```bash
-├── setup.py
 ├── proto
 │   └── helloworld.proto
-├── rust_server
-│   ├── Cargo.toml
-│   ├── src
-│   │   ├── main.rs
-│   │   └── helloworld
-│   │       └── mod.rs
-└── python_client
-    └── client.py
+├── pythonapi
+│   ├── greeter_client.py
+│   ├── greeter_server.py
+├── src
+│   ├── client.rs
+│   ├── server.rs
+│   ├── main.rs
+├── build.rs
+├── Cargo.toml
+
 ```
