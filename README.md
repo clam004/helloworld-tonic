@@ -63,6 +63,12 @@ Will try to greet world ...
 Greeter client received: Hello you!
 ```
 
+If you receive 
+```bash
+    import helloworld_pb2
+ModuleNotFoundError: No module named 'helloworld_pb2'
+```
+
 ### Python as the server Rust as the client
 
 ```bash
