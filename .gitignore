@@ -1,3 +1,8 @@
+# Ignore .py files starting with "helloworld" and ending in ".py" for sake of this tutorial
+helloworld*.py
+helloworld*.pyi
+
+# Rust
 /target
 **/*.rs.bk
 *.egg-info

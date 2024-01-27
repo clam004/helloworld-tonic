@@ -9,7 +9,7 @@ you can have a python-client exchange a message via gRPC with a rust-server, or 
 
 [Step By Step Rust Tonic Tutorial](https://github.com/hyperium/tonic/blob/master/examples/helloworld-tutorial.md)
 
-## Install Rust 
+### Install Rust 
 
 ```bash
    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -42,7 +42,7 @@ Got a request: Request { metadata: MetadataMap { headers: {"te": "trailers", "co
 Got a request: Request { metadata: MetadataMap { headers: {"content-type": "application/grpc", "te": "trailers", "grpc-accept-encoding": "identity, deflate, gzip", "user-agent": "grpc-python/1.59.2 grpc-c/36.0.0 (osx; chttp2)"} }, message: HelloRequest { name: "you" }, extensions: Extensions }
 ```
 
-### Python server and client
+## Python server and client
 
 [Step by Step Python gRPC tutorial](https://grpc.io/docs/languages/python/quickstart/)
 
@@ -51,23 +51,51 @@ $ python3 -m pip install --upgrade pip
 $ python3 -m pip install virtualenv # if not already done
 $ python3 -m venv venv
 $ source venv/bin/activate
-(venv) $ python -m pip install grpcio
+(venv) $ pip install grpcio grpcio-tools
 (venv) $ pip install protobuf
 (venv) $ cd pythonapi
+```
+### Python as the server
+
+```bash
+(venv) python $ python greeter_server.py
+Server started, listening on 50051
+```
+
+If you receive 
+```bash
+    import helloworld_pb2
+ModuleNotFoundError: No module named 'helloworld_pb2'
+```
+its because you havent yet generated the gRPC Python files: 
+```bash
+helloworld_pb2.py       helloworld_pb2.pyi      helloworld_pb2_grpc.py
+```
+You do this by making the `.proto` file in the `/proto/` folder and using `grpc_tools.protoc` to read that file, `./proto/helloworld.proto` in our case if you are currently within the main `rust-grpc-python-tonic/` directory, and then running this command:
+```bash
+rust-grpc-python-tonic $  python -m grpc_tools.protoc -I./proto --python_out=./pythonapi --pyi_out=./pythonapi --grpc_python_out=./pythonapi ./proto/helloworld.proto
+```
+After this command you should see the 3 `helloworld` files above appear in the `./pythonapi` folder you directed them to
+
+### Python as the client
+
+If you have a server running, can be python or rust, in a separate terminal, you can ping that server as the client:
+
+```bash
 (venv) python $ python greeter_client.py
 Will try to greet world ...
 Greeter client received: Hello you!
 ```
 
-## Python as the server
+### Python as the server Rust as the client
 
 ```bash
 (venv) python $ python greeter_server.py
 ```
 
-in another terminal
+in another terminal,start rust as the client
 
-```
+```bash
 (venv) rust-grpc-python-tonic $ cargo run --bin helloworld-client
 ```
 
