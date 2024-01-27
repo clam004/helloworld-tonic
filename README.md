@@ -1,6 +1,6 @@
 # rust-grpc-python-tonic
 
-How to use Protocol Buffers (protobuf) as an interface (I/F) between Rust code (using tonic) and Python code (using grpc)
+How to use a gRPC service defined using protocol buffers (protobuf) as an interface (I/F) between a server and a client, where the server - client can be written in: Python - Python, Python - Rust, Rust - Python or Rust code and Python code (using tonic).
 
 In the example below we first have a Rust server and client exchange a message via gRPC, then we have python exchange a message via gRPC, then
 you can have a python-client exchange a message via gRPC with a rust-server, or have a rust-client exchange a message via gRPC with a python-server.
